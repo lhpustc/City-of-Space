@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ProjectC</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+	<!--	Create the HTML5 'canvas' element in which we will run WebGL
+	-->
+  <body onload="main()">
+    <canvas id="webgl" width="600" height="600">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <button style="height:24px;width:160px;font-size:18px" class="popup" onclick="UserGuide()">User Guide
+       <span class="popuptext" id="user_guide">
+         <br><b>User Instructions: </b><br>
+         World Light: user-adjustable light(marked by the silver sphere).<br>
+         Head Light: co-located with the camera.<br>
+         1. Use "Up/Down/Left/Right" keys to move the camera forward/backward/left/right<br>
+         2. Use "A/D/W/S" keys to look left/right/up/down<br>
+         3. Select the lighting-shading mode from the drop-down menu.<br>
+         4. Use "I/O", "K/L" and "N/M" to move the world light up/down, left/right, and fowward/backward, respectively.<br>
+         5. Switch the ambient, diffuse, specular components of each light source by checking/unchecking the “Ambient”, “Diffuse”, “Specular” checkboxes for each light source.<br>
+         6. Change the RGB values of ambient, diffuse, specular components of the world light in the textbox and click "Confirm".<br>
+       </span>
+    </button>
+    <select id="mode" onchange="GetMode(this)" style="height:24px;width:300px;font-size:18px">
+      <option value="PP">PhongLighting-PhongShading</option>
+      <option value="BP">BlinnPhongLighting-PhongShading</option>
+      <option value="PG">PhongLighting-GouraudShading</option>
+      <option value="BG">BlinnPhongLighting-GouraudShading</option>
+    </select>
+    <form>World Light
+      <input type="checkbox" id="l0_ambi" checked="true" onclick="L0_Ambi(this)"><label>Ambient</label>
+      <input type="checkbox" id="l0_diff" checked="true" onclick="L0_Diff(this)"><label>Diffuse</label>
+      <input type="checkbox" id="l0_spec" checked="true" onclick="L0_Spec(this)"><label>Specular</label>
+
+      &nbsp; Ambient r,g,b: <input type="text" id="ambi_r" size=5>,<input type="text" id="ambi_g" size=5>,<input type="text" id="ambi_b" size=5>
+      &nbsp; Diffuse r,g,b: <input type="text" id="diff_r" size=5>,<input type="text" id="diff_g" size=5>,<input type="text" id="diff_b" size=5>
+      &nbsp; Specular r,g,b: <input type="text" id="spec_r" size=5>,<input type="text" id="spec_g" size=5>,<input type="text" id="spec_b" size=5>
+      <button type="button" onclick="setRGB()" style="height:22px;width:80px;font-size:16px">Confirm</button>
+    </form>
+    <form>Head Light
+      <input type="checkbox" id="l1_ambi" checked="true" onclick="L1_Ambi(this)"><label>Ambient</label>
+      <input type="checkbox" id="l1_diff" checked="true" onclick="L1_Diff(this)"><label>Diffuse</label>
+      <input type="checkbox" id="l1_spec" checked="true" onclick="L1_Spec(this)"><label>Specular</label>
+    </form>
+    <script src="./lib/webgl-utils.js"></script>
+    <script src="./lib/webgl-debug.js"></script>
+    <script src="./lib/cuon-utils.js"></script>
+    <script src="./lib/cuon-matrix-mod.js"></script>
+    <script src="./lib/cuon-matrix-quat.js"></script>
+    <script src="lights-JT.js"></script>
+    <script src="materials_Ayerdi.js"></script>
+	<!--	Finally, load in our own JavaScript program file.
+	-->
+    <script src="projectC.js"></script>
+  </body>
+</html>
